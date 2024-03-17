@@ -1,4 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ChronoMarketplace.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ChronoMarketplaceDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ChronoMarketplaceDbContextConnection' not found.");
+
+builder.Services.AddDbContext<ChronoMarketplaceDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ChronoMarketplaceUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ChronoMarketplaceDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,5 +31,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
