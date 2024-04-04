@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoMarketplace", "ChronoMarketplace\ChronoMarketplace.csproj", "{3D47EA69-56D6-442E-971B-20B0C17DB1A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChronoMarketplace", "ChronoMarketplace\ChronoMarketplace.csproj", "{3D47EA69-56D6-442E-971B-20B0C17DB1A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
