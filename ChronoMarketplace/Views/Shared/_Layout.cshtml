@@ -10,28 +10,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-black bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ChronoMarketplace</a>
+           
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
                             <div class="container-fluid">
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                        </li>
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">                             
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Buy a Watch
+                                                <FONT COLOR="white">Buy a Watch</FONT>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="NewArrivals"> New Arrivals</a></li>
@@ -42,7 +39,7 @@
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Sell a Watch
+                                                <FONT COLOR="white">Sell a Watch</FONT>
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="SellNow"> Sell Now</a></li>
@@ -51,21 +48,29 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><FONT COLOR="white">Contact</FONT></a>
                                         </li>
                                         <li class="nav-item">                                          
-                                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"><FONT COLOR="white">Privacy</FONT></a>
                                         </li>
+
+                                       
+                                      
+    
                                     </ul>
-                                    <form class="d-flex">
-                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
-                                    </form>
+                                    
                                 </div>
                             </div>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img src="~/images/chrono marketplace logo - no background.png" alt="Chrono Marketplace" style="width:250px;">
+                            </a>
+
+                        </li>
                         </nav>
                     </ul>
                 </div>
+                
                 <partial name="_LoginPartial" />
             </div>
         </nav>
