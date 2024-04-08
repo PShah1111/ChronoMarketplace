@@ -24,6 +24,13 @@
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <img src="~/images/chrono marketplace logo - no background.png" alt="Chrono Marketplace" style="width:200px" />
+                            </a>
+
+
+                        </li>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">                             
                                         <li class="nav-item dropdown">
@@ -60,17 +67,17 @@
                                 </div>
                             </div>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <img src="~/images/chrono marketplace logo - no background.png" alt="Chrono Marketplace" style="width:250px"/>
-                            </a>
-                           
-
-                        </li>
+                      
                         </nav>
                     </ul>
                 </div>
-                
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cart"><img src="~/images/shopping cart.jpg" alt="Shopping Cart" width="40px" /></a>
+        
                 <partial name="_LoginPartial" />
             </div>
         </nav>

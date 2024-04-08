@@ -54,6 +54,11 @@ namespace ChronoMarketplace.Controllers
         {
             return View();
         }
+        public IActionResult Cart()
+        {
+            return View();
+        }
+      
 
 
 
