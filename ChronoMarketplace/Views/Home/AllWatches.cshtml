@@ -1,11 +1,93 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    ViewData["Title"] = "All Watches";
 *@
 @{
 }
-<div class="text-center">
-    <h1 class="display-4"><FONT COLOR="white">All Watches</FONT> </h1>
 
-    </h1>
-</div>
-<p><font color="white">All Watches will be included here with a filtering system.</font></p>
+<html>
+
+<head>
+
+
+
+    <style>
+        span {
+            position: relative;
+            left: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+            span.sort {
+                position: relative;
+                left: 76%;
+                font-weight: 400;
+                color: white;
+                border-style: solid;
+                padding: 7px;
+                border-radius: 8px;
+                border-color: white;
+            }
+    </style>
+</head>
+<body style="background-color:black">
+    >
+
+    <div class="text-center" style="padding: 20px">
+        <h1 style="color: white">All Watches</h1>
+    </div>
+    <div class="container-fluid mt-3">
+        <span>3 listings</span>
+        <span class="sort">Sort By: Lowest Price </span>
+        <div class="row">
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card" style="width:100%">
+                    <img class="card-img-top" src="~/Images/Rolex.jpg" alt="Rolex Submariner" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Rolex Submariner</h4>
+                        <p class="card-text">
+                            <i>REF.14060</i>
+                            <br />
+                            The face of Rolex, versatile, classy and luxurious
+                        </p>
+                        <a href="#" class="btn btn-primary">See Watch</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card" style="width:100%">
+                    <img class="card-img-top" src="~/Images/AudemarsPiguet1.jpg" alt="Audemars Piguet Royal Oak" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Audemars Piguet Royal Oak</h4>
+                        <p class="card-text">
+                            <i>REF.56847Q</i>
+                            <br />
+                            Experience the iconic Royal Oak, whose pioneering design and craftsmanship embody Audemars Piguet's uncompromising vision of luxury
+                        </p>
+                        <a href="#" class="btn btn-primary">See Watch</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card" style="width:100%">
+                    <img class="card-img-top" src="~/Images/MyG-SHOCK.jpg" alt="Patek Philippe Nautilus" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Patek Philippe Nautilus</h4>
+                        <p class="card-text">
+                            <i>REF.776483P</i>
+                            <br />
+                            From G-SHOCK, the toughness watches that continue to evolve in search of ultimate strength
+                        </p>
+                        <a href="#" class="btn btn-primary">See Watch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>
