@@ -1,56 +1,128 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    ViewData["Title"] = "Brands";
 *@
 @{
 }
-<div class="text-center">
-    <h1 class="display-4"><FONT COLOR="white">Brands</FONT> </h1>
 
-    </h1>
-</div>
-<p><font color="white">Brands: Rolex, Patek Philippe, Audemars Piguet, Omega, Seiko, Casio</font></p>
+<html>
+
+<head>
 
 
-<div class="container mt-5">
-    <div class="card" style="width:500px">
-        <img class="card-img-top" src="~/images/rolex.jpg" />
-        <div class="card-img-overlay">
-            <center> <h4 class="card-title"> <font color="white">Rolex</font> </h4> </center>
-            <p class="card-text"></p>
 
+    <style>
+        span {
+            position: relative;
+            left: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+            span.sort {
+                position: relative;
+                left: 76%;
+                font-weight: 400;
+                color: white;
+                border-style: solid;
+                padding: 7px;
+                border-radius: 8px;
+                border-color: white;
+            }
+    </style>
+</head>
+<body style="background-color:black">
+    >
+
+    <div class="text-center" style="padding: 20px">
+        <h1 style="color: white">Brands</h1>
+    </div>
+    <div class="container-fluid mt-3">
+        <span>7 listings</span>
+        <span class="sort">Sort By: Alphabetical Order </span>
+        <div class="row">
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/AudemarsPiguet1.jpg" alt="Audemars Piguet" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Audemars Piguet</h4>
+                        
+                        <a href="#" class="btn btn-primary"><center>See Brand</center></a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/MyG-SHOCK.jpg" alt="Casio G-SHOCK" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Casio G-SHOCK</h4>
+                       
+                        <a href="#" class="btn btn-primary">See Brand</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/Omega.jpg" alt="Omega" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Omega</h4>
+                        
+                        <a href="#" class="btn btn-primary">See Brand</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/PatekPhillipe.jpg" alt="Patek Philippe" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Patek Philippe</h4>
+                        
+                        <a href="#" class="btn btn-primary">See Brand</a>
+                    </div>
+                </div>
+            </div>
+     
+            <br>
+    <div class="col-sm-4 p-3 text-black">
+        <div class="card h-100" style="width:100%">
+            <img class="card-img-top" src="~/Images/Rolex.jpg" alt="Rolex" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">Rolex</h4>
+                
+                <a href="#" class="btn btn-primary">See Brand</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container mt-5">
-    <div class="card" style="width:500px">
-        <img class="card-img-top" src="~/images/AudemarsPiguet.jpg" />
-        <div class="card-img-overlay">
-            <center> <h4 class="card-title"> <font color="white">Audemars Piguet</font> </h4> </center>
-            <p class="card-text"></p>
-
+    <br>
+    <div class="col-sm-4 p-3 text-black">
+        <div class="card h-100" style="width:100%">
+            <img class="card-img-top" src="~/Images/Seiko.jpg" alt="Seiko" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">Seiko</h4>
+                
+                <a href="#" class="btn btn-primary">See Brand</a>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="container mt-5">
-    <div class="card" style="width:500px">
-        <img class="card-img-top" src="~/images/PatekPhillipe.jpg" />
-        <div class="card-img-overlay">
-            <center> <h4 class="card-title"> <font color="white">Patek Philippe</font> </h4> </center>
-            <p class="card-text"></p>
-
+    <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/MyTissot.png" alt="Tissot" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Tissot</h4>
+                        
+                        <a href="#" class="btn btn-primary">See Brand</a>
+                    </div>
+                </div>
+            </div>
+ 
         </div>
     </div>
-</div>
+</body>
 
-<div class="container mt-5">
-    <div class="card" style="width:500px">
-        <img class="card-img-top" src="~/images/Omega.jpg" />
-        <div class="card-img-overlay">
-            <center> <h4 class="card-title"> <font color="white">Omega</font> </h4> </center>
-            <p class="card-text"></p>
 
-        </div>
-    </div>
-</div>
+
+</html>

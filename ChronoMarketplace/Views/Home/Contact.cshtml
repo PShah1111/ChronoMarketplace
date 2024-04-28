@@ -1,16 +1,13 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    ViewData["Title"] = "Contact";
 *@
 @{
 }
 <div class="text-center">
-    <h1 class="display-4"><FONT COLOR="white">Contact</FONT> </h1>
+    <h1 class="display-4"><font color="white">Contact Us</font> </h1>
 
-    </h1>
+    
 </div>
-@{
-    ViewData["Title"] = "Contact Us";
-}
 
 
 <html>
@@ -53,23 +50,25 @@
 </head>
 <body>
 
-    <div class="container p-5 my-5 bg-black text-white rounded">
-        <h1><center>Chrono Marketplace Contact Details:</center></h1>
+   <center> <div class="container p-5 my-5 bg-black text-white rounded">
+        <h1>Chrono Marketplace Contact Details:</h1>
         <h5>Phone: +64 22 6651 172</h5>
         <h5>Email: chronomarketplace@gmail.com</h5>
         <h5>HQ Address: 75 Queen Street, Auckland CBD, Auckland 1010</h5>
-    </div>
+    </div> </center>
+    <center><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.8815036609126!2d174.76359937635914!3d-36.845313879314325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47fbc565938f%3A0x11f9a89016588974!2s75%20Queen%20Street%2C%20Auckland%20CBD%2C%20Auckland%201010!5e0!3m2!1sen!2snz!4v1714292132119!5m2!1sen!2snz"
+    width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </center>
 
-
+   
     <div class="container">
         <form action="/action_page.php">
-            <label for="fname">First Name</label>
+            <label for="fname" style="color:white">First Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Your First Name...">
 
-            <label for="lname">Last Name</label>
+            <label for="lname" style="color:white">Last Name</label>
             <input type="text" id="lname" name="lastname" placeholder="Your Last Name..">
 
-            <label for="city">City</label>
+            <label for="city" style=" color:white">City</label>
             <select id="city" name="city">
                 <option value="auckland">Auckland</option>
                 <option value="wellington">Hamilton</option>
@@ -79,7 +78,7 @@
                 <option value="rotorua">Other</option>
             </select>
 
-            <label for="subject">Subject Matter</label>
+            <label for="subject" style="color:white">Subject Matter</label>
             <textarea id="subject" name="subject" placeholder="Please describe your query..." style="height:200px"></textarea>
 
             <input type="submit" value="Send">

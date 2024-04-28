@@ -1,12 +1,94 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    ViewData["Title"] = "Accessories";
 *@
 @{
 }
-<div class="text-center">
-<h1 class="display-4"><FONT COLOR="white">Accessories</FONT> </h1>
 
-</h1>
-</div>
-<p><font color="white">Accessories will include: Watch Rolls, Straps and cleaning tools.</font></p>
+<html>
 
+<head>
+
+
+
+    <style>
+        span {
+            position: relative;
+            left: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+            span.sort {
+                position: relative;
+                left: 76%;
+                font-weight: 400;
+                color: white;
+                border-style: solid;
+                padding: 7px;
+                border-radius: 8px;
+                border-color: white;
+            }
+    </style>
+</head>
+<body style="background-color:black">
+    >
+
+    <div class="text-center" style="padding: 20px">
+        <h1 style="color: white">Accessories</h1>
+    </div>
+    <div class="container-fluid mt-3">
+        <span>3 listings</span>
+        <span class="sort">Sort By: Highest Price</span>
+        <div class="row">
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/Watch Box.jpg" alt="Watch Box" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Watch Box</h4>
+                        <p class="card-text">
+                            <i>Made By: Chrono Marketplace</i>
+                            <br />
+                            A stylish and practical storage solution designed to safely organize and display wristwatches, crafted from premium materials in New Zealand
+                        </p>
+                        <a href="#" class="btn btn-primary">See Accessory</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/Watch Straps.jpg" alt="Watch Straps" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Watch Straps</h4>
+                        <p class="card-text">
+                            <i>Made By: Chrono Marketplace</i>
+                            <br />
+                            These straps are versatile accessories that allow you to personalize and enhance the look of your timepiece, 
+                            available in a variety of materials, styles, and colors to suit different preferences and occasions
+                        </p>
+                        <a href="#" class="btn btn-primary">See Accessory</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4 p-3 text-black">
+                <div class="card h-100" style="width:100%">
+                    <img class="card-img-top" src="~/Images/Watch Tool.jpg" alt="Watch Tool" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Watch Tool</h4>
+                        <p class="card-text">
+                            <i>Made By: Chrono Marketplace</i>
+                            <br />
+                            Essential instrument for watch enthusiasts and professionals, facilitating the task of strap adjustments with precision and accuracy
+                        </p>
+                        <a href="#" class="btn btn-primary">See Accessory</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>
