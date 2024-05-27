@@ -7,11 +7,13 @@ namespace ChronoMarketplace.Models
     {
         [Required]
         [DisplayName("Category ID")]
-        public int category_ID { get; set; }
+        public int Category_ID { get; set; }
 
         [Required]
         [DisplayName("Category Name")]
-        public string category_name { get; set; }
+        public string? Category_Name { get; set; }
+
+        public ICollection<Products>? Products { get; set; }
 
 
     }

@@ -6,27 +6,30 @@ namespace ChronoMarketplace.Models
     public class Shopping_Cart
     {
 
-        public int cart_ID { get; set; }
+        public int Cart_ID { get; set; }
 
         [Required]
         [DisplayName("Customer ID")]
-        public int customer_ID { get; set; }
+        public int Customer_ID { get; set; }
 
         [Required]
         [DisplayName("Product ID")]
-        public int product_ID { get; set; }
+        public int Product_ID { get; set; }
 
         [Required]
         [DisplayName("Payment Method")]
-        public string pay_method { get; set; }
+        public string? Pay_method { get; set; }
 
         [Required]
         [DisplayName("Quantity")]
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Required]
         [DisplayName("Total Price")]
-        public int total_price { get; set; }
+        public int Total_price { get; set; }
 
+        public ICollection<Shopping_Order>? Shopping_Order { get; set; }
+        public ICollection<User>? User { get; set; }
+        public ICollection<Products>? Products { get; set; }
     }
 }
