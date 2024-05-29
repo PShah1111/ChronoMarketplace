@@ -25,8 +25,8 @@ namespace ChronoMarketplace.Models
         [DataType(DataType.Date)]
         public DateTime Pay_date { get; set; }
 
-        public ICollection<Shopping_Order>? Shopping_Order { get; set; }
-        public ICollection<User>? User { get; set; }
+        public Shopping_Order? Shopping_Order { get; set; }
+        public User User { get; set; }
 
     }
 }

@@ -11,7 +11,7 @@ namespace ChronoMarketplace.Models
 
         [Required]
         [DisplayName("Category Name")]
-        public string? Category_Name { get; set; }
+        public string Category_Name { get; set; }
 
         public ICollection<Products>? Products { get; set; }
 

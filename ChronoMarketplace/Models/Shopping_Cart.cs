@@ -28,8 +28,8 @@ namespace ChronoMarketplace.Models
         [DisplayName("Total Price")]
         public int Total_price { get; set; }
 
-        public ICollection<Shopping_Order>? Shopping_Order { get; set; }
-        public ICollection<User>? User { get; set; }
-        public ICollection<Products>? Products { get; set; }
+        public ICollection<Shopping_Order> Shopping_Order { get; set; }
+        public User? User { get; set; }
+        public ICollection<Products> Products { get; set; }
     }
 }

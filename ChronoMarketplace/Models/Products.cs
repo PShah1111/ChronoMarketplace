@@ -25,7 +25,7 @@ namespace ChronoMarketplace.Models
         [DataType(DataType.Date)]
         public string? Pay_date { get; set; }
 
-        public ICollection<Categories>? Categories  { get; set; }
-        public ICollection<Shopping_Cart>? Shopping_Cart { get; set; }
+        public Categories Categories  { get; set; }
+        public Shopping_Cart ?Shopping_Cart { get; set; }
     }
 }

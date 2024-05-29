@@ -37,9 +37,9 @@ namespace ChronoMarketplace.Models
         public string? U_DOB { get; set; }
 
 
-        public ICollection<Shopping_Cart>? Shopping_Cart { get; set; }
+        public Shopping_Cart Shopping_Cart { get; set; }
         public ICollection<Shopping_Order>? Shopping_Order { get; set; }
-        public ICollection<Payment>? Payment { get; set; }
+        public Payment? Payment { get; set; }
 
 
 

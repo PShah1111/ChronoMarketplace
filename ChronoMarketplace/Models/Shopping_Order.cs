@@ -28,9 +28,9 @@ namespace ChronoMarketplace.Models
         [DisplayName("Shipment Date")]
         public int Shipment_date { get; set; }
 
-        public ICollection<User>? User { get; set; }
-        public ICollection<Payment>? Payment { get; set; }
-        public ICollection<Shopping_Cart>? Shopping_Cart { get; set; }
+        public User ?User { get; set; }
+        public Payment Payment { get; set; }
+        public Shopping_Cart Shopping_Cart { get; set; }
 
     }
 }
