@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ChronoMarketplace.Models;
 
 namespace ChronoMarketplace.Areas.Identity.Data;
 
@@ -25,6 +26,18 @@ public class ChronoMarketplaceDbContext : IdentityDbContext<ChronoMarketplaceUse
 
 
     }
+
+    public DbSet<ChronoMarketplace.Models.Category> Category { get; set; } = default!;
+
+    public DbSet<ChronoMarketplace.Models.Payment> Payment { get; set; } = default!;
+
+    public DbSet<ChronoMarketplace.Models.Product> Product { get; set; } = default!;
+
+    public DbSet<ChronoMarketplace.Models.Shopping_Cart> Shopping_Cart { get; set; } = default!;
+
+    public DbSet<ChronoMarketplace.Models.Shopping_Order> Shopping_Order { get; set; } = default!;
+
+    public DbSet<ChronoMarketplace.Models.User> User { get; set; } = default!;
 }
 
 public class ChronoMarketplaceUserEntityConfiguration : IEntityTypeConfiguration<ChronoMarketplaceUser>

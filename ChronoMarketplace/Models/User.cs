@@ -5,7 +5,7 @@ namespace ChronoMarketplace.Models
 {
     public class User
     {
-        public int User_ID { get; set; }
+        [Key] public int User_ID { get; set; }
 
         [Required]
         [DisplayName("First Name")]
@@ -16,15 +16,15 @@ namespace ChronoMarketplace.Models
         public string? U_lastname { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [DisplayName("Street")]
         public string? U_street { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [DisplayName("City")]
         public string? U_city { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [DisplayName("Zip")]
         public string? U_zip { get; set; }
 
         [Required]
@@ -33,13 +33,14 @@ namespace ChronoMarketplace.Models
         public string? U_contactnumber { get; set; }
 
         [Required]
+        [DisplayName("Date Of Birth")]
         [DataType(DataType.Date)]
-        public string? U_DOB { get; set; }
+        public string U_DOB { get; set; }
 
 
-        public Shopping_Cart Shopping_Cart { get; set; }
-        public ICollection<Shopping_Order>? Shopping_Order { get; set; }
-        public Payment? Payment { get; set; }
+        public ICollection<Shopping_Cart> Shopping_Carts { get; set; }
+        public ICollection<Shopping_Order> Shopping_Orders { get; set; }
+        public ICollection<Payment> Payments { get; set; }
 
 
 

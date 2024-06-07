@@ -3,22 +3,18 @@ using System.ComponentModel;
 
 namespace ChronoMarketplace.Models
 {
-    public class Shopping_Cart
+   public class Shopping_Cart
     {
 
-        public int Cart_ID { get; set; }
+        [Key] public int Cart_ID { get; set; }
 
         [Required]
-        [DisplayName("Customer ID")]
-        public int Customer_ID { get; set; }
+        [DisplayName("User ID")]
+        public int User_ID { get; set; }
 
         [Required]
         [DisplayName("Product ID")]
         public int Product_ID { get; set; }
-
-        [Required]
-        [DisplayName("Payment Method")]
-        public string? Pay_method { get; set; }
 
         [Required]
         [DisplayName("Quantity")]
@@ -28,8 +24,8 @@ namespace ChronoMarketplace.Models
         [DisplayName("Total Price")]
         public int Total_price { get; set; }
 
-        public ICollection<Shopping_Order> Shopping_Order { get; set; }
-        public User? User { get; set; }
-        public ICollection<Products> Products { get; set; }
+        public ICollection<Shopping_Order> Shopping_Orders { get; set; }
+        public ICollection<User> Users { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

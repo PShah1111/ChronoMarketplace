@@ -3,17 +3,15 @@ using System.ComponentModel;
 
 namespace ChronoMarketplace.Models
 {
-    public class Categories
+    public class Category
     {
-        [Required]
-        [DisplayName("Category ID")]
-        public int Category_ID { get; set; }
+        [Key] public int Category_ID { get; set; }
 
         [Required]
         [DisplayName("Category Name")]
         public string Category_Name { get; set; }
 
-        public ICollection<Products>? Products { get; set; }
+        public ICollection<Product> Products { get; set; }
 
 
     }
