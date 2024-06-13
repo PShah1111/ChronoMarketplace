@@ -1,20 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using ChronoMarketplace.Areas.Identity.Data;
 
 namespace ChronoMarketplace.Models
 {
-   public class Shopping_Cart
+   public class ShoppingCart
     {
-
-        [Key] public int Cart_ID { get; set; }
+        [Required]
+        [Key] public int CartId { get; set; }
 
         [Required]
         [DisplayName("User ID")]
-        public int User_ID { get; set; }
+        public ChronoMarketplaceUser UserId { get; set; }
 
         [Required]
         [DisplayName("Product ID")]
-        public int Product_ID { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
         [DisplayName("Quantity")]
@@ -22,9 +23,9 @@ namespace ChronoMarketplace.Models
 
         [Required]
         [DisplayName("Total Price")]
-        public int Total_price { get; set; }
+        public int Totalprice { get; set; }
 
-        public ICollection<Shopping_Order> Shopping_Orders { get; set; }
+        public ICollection<ShoppingOrder> ShoppingOrders { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Product> Products { get; set; }
     }

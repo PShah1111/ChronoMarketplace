@@ -36,7 +36,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var payment = await _context.Payment
-                .FirstOrDefaultAsync(m => m.Payment_ID == id);
+                .FirstOrDefaultAsync(m => m. PaymentId == id);
             if (payment == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace ChronoMarketplace.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Payment_ID,Customer_ID,Pay_amount,Pay_method,Pay_date")] Payment payment)
         {
-            if (id != payment.Payment_ID)
+            if (id != payment.PaymentId)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace ChronoMarketplace.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaymentExists(payment.Payment_ID))
+                    if (!PaymentExists(payment.PaymentId))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var payment = await _context.Payment
-                .FirstOrDefaultAsync(m => m.Payment_ID == id);
+                .FirstOrDefaultAsync(m => m.PaymentId == id);
             if (payment == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace ChronoMarketplace.Controllers
 
         private bool PaymentExists(int id)
         {
-          return (_context.Payment?.Any(e => e.Payment_ID == id)).GetValueOrDefault();
+          return (_context.Payment?.Any(e => e.PaymentId == id)).GetValueOrDefault();
         }
     }
 }

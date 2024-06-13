@@ -6,31 +6,31 @@ namespace ChronoMarketplace.Models
     public class Product
     {
 
-        [Key] public int Product_ID { get; set; }
+        [Key] public int ProductId { get; set; }
 
         [Required]
         [DisplayName("Category ID")]
-        public int Category_ID { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         [DisplayName("Product Image")]
-        public string P_image { get; set; }
+        public string Pimage { get; set; }
 
         [Required]
         [DisplayName("Product Name")]
-        public string? P_name { get; set; }
+        public string? Pname { get; set; }
 
         [Required]
         [DisplayName("Product Price")]
-        public int P_price { get; set; }
+        public int Pprice { get; set; }
 
         [Required]
         [DisplayName("Product Stock")]
-        public int P_stock { get; set; }
+        public int Pstock { get; set; }
 
 
 
         public Category Category  { get; set; }
-        public Shopping_Cart Shopping_Cart { get; set; }
+        public ShoppingCart ShoppingCart { get; set; }
     }
 }

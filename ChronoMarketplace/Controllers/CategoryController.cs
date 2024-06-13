@@ -36,7 +36,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Category_ID == id);
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace ChronoMarketplace.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Category_ID,Category_Name")] Category category)
         {
-            if (id != category.Category_ID)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace ChronoMarketplace.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Category_ID))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Category_ID == id);
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (category == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace ChronoMarketplace.Controllers
 
         private bool CategoryExists(int id)
         {
-          return (_context.Category?.Any(e => e.Category_ID == id)).GetValueOrDefault();
+          return (_context.Category?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }
     }
 }

@@ -3,36 +3,36 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ChronoMarketplace.Models
 {
-    public class Shopping_Order
+    public class ShoppingOrder
     {
 
-        [Key] public int Order_ID { get; set; }
+        [Key] public int OrderId { get; set; }
 
         [Required]
         [DisplayName("User ID")]
-        public int User_ID { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [DisplayName("Cart ID")]
-        public int Cart_ID { get; set; }
+        public int CartId { get; set; }
 
         [Required]
         [DisplayName("Payment ID")]
-        public int Payment_ID { get; set; }
+        public int PaymentId { get; set; }
 
         [Required]
         [DisplayName("Order Date")]
         [DataType(DataType.Date)]
-        public DateTime Order_date { get; set; }
+        public DateTime Orderdate { get; set; }
 
         [Required]
         [DisplayName("Shipment Date")]
         [DataType(DataType.Date)]
-        public DateTime Shipment_date { get; set; }
+        public DateTime Shipmentdate { get; set; }
 
         public User User { get; set; }
         public ICollection<Payment> Payments { get; set; }
-        public ICollection<Shopping_Cart> Shopping_Carts { get; set; }
+        public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
     }
 }

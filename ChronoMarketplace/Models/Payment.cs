@@ -6,26 +6,26 @@ namespace ChronoMarketplace.Models
     public class Payment
     {
 
-        [Key] public int Payment_ID { get; set; }
+        [Key] public int PaymentId { get; set; }
 
         [Required]
         [DisplayName("Customer ID")]
-        public int Customer_ID { get; set; }
+        public int CustomerId { get; set; }
 
         [Required]
         [DisplayName("Amount to Pay")]
-        public int Pay_amount { get; set; }
+        public int Payamount { get; set; }
 
         [Required]
         [DisplayName("Payment Method")]
-        public string? Pay_method { get; set; }
+        public string? Paymethod { get; set; }
 
         [Required]
         [DisplayName("Payment Date")]
         [DataType(DataType.Date)]
-        public DateTime Pay_date { get; set; }
+        public DateTime Paydate { get; set; }
 
-        public ICollection<Shopping_Order> Shopping_Orders { get; set; }
+        public ICollection<ShoppingOrder> ShoppingOrders { get; set; }
         public ICollection<User> Users { get; set; }
 
     }

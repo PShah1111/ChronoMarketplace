@@ -5,11 +5,11 @@ namespace ChronoMarketplace.Models
 {
     public class Category
     {
-        [Key] public int Category_ID { get; set; }
+        [Key] public int CategoryId { get; set; }
 
         [Required]
         [DisplayName("Category Name")]
-        public string Category_Name { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<Product> Products { get; set; }
 

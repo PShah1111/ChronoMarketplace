@@ -36,7 +36,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Product_ID == id);
+                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace ChronoMarketplace.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Product_ID,Category_ID,P_image,P_name,P_price,P_stock")] Product product)
         {
-            if (id != product.Product_ID)
+            if (id != product.ProductId)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace ChronoMarketplace.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Product_ID))
+                    if (!ProductExists(product.ProductId))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace ChronoMarketplace.Controllers
             }
 
             var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Product_ID == id);
+                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace ChronoMarketplace.Controllers
 
         private bool ProductExists(int id)
         {
-          return (_context.Product?.Any(e => e.Product_ID == id)).GetValueOrDefault();
+          return (_context.Product?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
     }
 }

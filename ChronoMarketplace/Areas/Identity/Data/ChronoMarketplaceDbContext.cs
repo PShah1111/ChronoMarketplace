@@ -33,9 +33,9 @@ public class ChronoMarketplaceDbContext : IdentityDbContext<ChronoMarketplaceUse
 
     public DbSet<ChronoMarketplace.Models.Product> Product { get; set; } = default!;
 
-    public DbSet<ChronoMarketplace.Models.Shopping_Cart> Shopping_Cart { get; set; } = default!;
+    public DbSet<ChronoMarketplace.Models.ShoppingCart> Shopping_Cart { get; set; } = default!;
 
-    public DbSet<ChronoMarketplace.Models.Shopping_Order> Shopping_Order { get; set; } = default!;
+    public DbSet<ChronoMarketplace.Models.ShoppingOrder> Shopping_Order { get; set; } = default!;
 
     public DbSet<ChronoMarketplace.Models.User> User { get; set; } = default!;
 }
