@@ -26,7 +26,6 @@ namespace ChronoMarketplace.Models
         public int Totalprice { get; set; }
 
         public ICollection<ShoppingOrder> ShoppingOrders { get; set; }
-        public ICollection<User> Users { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 }

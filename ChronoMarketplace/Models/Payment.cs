@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using ChronoMarketplace.Areas.Identity.Data;
 
 namespace ChronoMarketplace.Models
 {
@@ -9,8 +10,8 @@ namespace ChronoMarketplace.Models
         [Key] public int PaymentId { get; set; }
 
         [Required]
-        [DisplayName("Customer ID")]
-        public int CustomerId { get; set; }
+        [DisplayName("User ID")]
+        public ChronoMarketplaceUser UserId { get; set; }
 
         [Required]
         [DisplayName("Amount to Pay")]
@@ -26,7 +27,7 @@ namespace ChronoMarketplace.Models
         public DateTime Paydate { get; set; }
 
         public ICollection<ShoppingOrder> ShoppingOrders { get; set; }
-        public ICollection<User> Users { get; set; }
+
 
     }
 }

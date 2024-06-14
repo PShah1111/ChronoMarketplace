@@ -37,7 +37,6 @@ public class ChronoMarketplaceDbContext : IdentityDbContext<ChronoMarketplaceUse
 
     public DbSet<ChronoMarketplace.Models.ShoppingOrder> Shopping_Order { get; set; } = default!;
 
-    public DbSet<ChronoMarketplace.Models.User> User { get; set; } = default!;
 }
 
 public class ChronoMarketplaceUserEntityConfiguration : IEntityTypeConfiguration<ChronoMarketplaceUser>

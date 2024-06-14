@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ChronoMarketplace.Areas.Identity.Data;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ChronoMarketplace.Models
@@ -10,7 +11,7 @@ namespace ChronoMarketplace.Models
 
         [Required]
         [DisplayName("User ID")]
-        public int UserId { get; set; }
+        public ChronoMarketplaceUser UserId { get; set; }
 
         [Required]
         [DisplayName("Cart ID")]
@@ -30,7 +31,6 @@ namespace ChronoMarketplace.Models
         [DataType(DataType.Date)]
         public DateTime Shipmentdate { get; set; }
 
-        public User User { get; set; }
         public ICollection<Payment> Payments { get; set; }
         public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
