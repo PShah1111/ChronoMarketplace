@@ -1,0 +1,43 @@
+﻿@model ChronoMarketplace.Models.ShoppingOrder
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Home/Accessories.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ShoppingOrder</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CartId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CartId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Orderdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Orderdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Shipmentdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Shipmentdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Payment.Paymethod)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ShoppingOrderId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

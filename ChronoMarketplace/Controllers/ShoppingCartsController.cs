@@ -10,87 +10,87 @@ using ChronoMarketplace.Models;
 
 namespace ChronoMarketplace.Controllers
 {
-    public class ProductController : Controller
+    public class ShoppingCartsController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;
 
-        public ProductController(ChronoMarketplaceDbContext context)
+        public ShoppingCartsController(ChronoMarketplaceDbContext context)
         {
             _context = context;
         }
 
-        // GET: Products
+        // GET: ShoppingCarts
         public async Task<IActionResult> Index()
         {
-              return _context.Product != null ? 
-                          View(await _context.Product.ToListAsync()) :
-                          Problem("Entity set 'ChronoMarketplaceDbContext.Product'  is null.");
+              return _context.Shopping_Cart != null ? 
+                          View(await _context.Shopping_Cart.ToListAsync()) :
+                          Problem("Entity set 'ChronoMarketplaceDbContext.Shopping_Cart'  is null.");
         }
 
-        // GET: Products/Details/5
+        // GET: ShoppingCarts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Shopping_Cart == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var shoppingCart = await _context.Shopping_Cart
+                .FirstOrDefaultAsync(m => m.CartId == id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(shoppingCart);
         }
 
-        // GET: Products/Create
+        // GET: ShoppingCarts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: ShoppingCarts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Product_ID,Category_ID,P_image,P_name,P_price,P_stock")] Product product)
+        public async Task<IActionResult> Create([Bind("CartId,ProductId,Quantity,Totalprice")] ShoppingCart shoppingCart)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(shoppingCart);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(shoppingCart);
         }
 
-        // GET: Products/Edit/5
+        // GET: ShoppingCarts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Shopping_Cart == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            var shoppingCart = await _context.Shopping_Cart.FindAsync(id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(shoppingCart);
         }
 
-        // POST: Products/Edit/5
+        // POST: ShoppingCarts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Product_ID,Category_ID,P_image,P_name,P_price,P_stock")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductId,Quantity,Totalprice")] ShoppingCart shoppingCart)
         {
-            if (id != product.ProductId)
+            if (id != shoppingCart.CartId)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace ChronoMarketplace.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(shoppingCart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductId))
+                    if (!ShoppingCartExists(shoppingCart.CartId))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace ChronoMarketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(shoppingCart);
         }
 
-        // GET: Products/Delete/5
+        // GET: ShoppingCarts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null || _context.Shopping_Cart == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var shoppingCart = await _context.Shopping_Cart
+                .FirstOrDefaultAsync(m => m.CartId == id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(shoppingCart);
         }
 
-        // POST: Products/Delete/5
+        // POST: ShoppingCarts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Product == null)
+            if (_context.Shopping_Cart == null)
             {
-                return Problem("Entity set 'ChronoMarketplaceDbContext.Product'  is null.");
+                return Problem("Entity set 'ChronoMarketplaceDbContext.Shopping_Cart'  is null.");
             }
-            var product = await _context.Product.FindAsync(id);
-            if (product != null)
+            var shoppingCart = await _context.Shopping_Cart.FindAsync(id);
+            if (shoppingCart != null)
             {
-                _context.Product.Remove(product);
+                _context.Shopping_Cart.Remove(shoppingCart);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool ShoppingCartExists(int id)
         {
-          return (_context.Product?.Any(e => e.ProductId == id)).GetValueOrDefault();
+          return (_context.Shopping_Cart?.Any(e => e.CartId == id)).GetValueOrDefault();
         }
     }
 }

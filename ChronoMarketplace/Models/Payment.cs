@@ -7,7 +7,8 @@ namespace ChronoMarketplace.Models
     public class Payment
     {
 
-        [Key] public int PaymentId { get; set; }
+        [Key]
+        public int PaymentId { get; set; } //Primary Key
 
         [Required]
         [DisplayName("User ID")]
@@ -25,8 +26,6 @@ namespace ChronoMarketplace.Models
         [DisplayName("Payment Date")]
         [DataType(DataType.Date)]
         public DateTime Paydate { get; set; }
-
-        public ICollection<ShoppingOrder> ShoppingOrders { get; set; }
 
 
     }

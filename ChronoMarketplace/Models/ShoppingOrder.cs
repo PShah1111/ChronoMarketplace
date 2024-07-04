@@ -1,13 +1,15 @@
 ﻿using ChronoMarketplace.Areas.Identity.Data;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChronoMarketplace.Models
 {
     public class ShoppingOrder
     {
 
-        [Key] public int OrderId { get; set; }
+        [Key] 
+        public int ShoppingOrderId { get; set; } //Primary Key
 
         [Required]
         [DisplayName("User ID")]
@@ -17,10 +19,7 @@ namespace ChronoMarketplace.Models
         [DisplayName("Cart ID")]
         public int CartId { get; set; }
 
-        [Required]
-        [DisplayName("Payment ID")]
-        public int PaymentId { get; set; }
-
+       
         [Required]
         [DisplayName("Order Date")]
         [DataType(DataType.Date)]
@@ -31,7 +30,10 @@ namespace ChronoMarketplace.Models
         [DataType(DataType.Date)]
         public DateTime Shipmentdate { get; set; }
 
-        public ICollection<Payment> Payments { get; set; }
+        [ForeignKey("Payment")] 
+        public int PaymentID { get; set; }
+
+        public Payment Payment { get; set; } // Reference navigation to dependent 
         public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
     }
