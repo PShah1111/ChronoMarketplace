@@ -2,10 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Home/Accessories.cshtml";
+  
 }
 
-<h1>Index</h1>
+<h1>Shopping Orders</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,7 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CartId)
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShoppingFirstName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Orderdate)
@@ -23,7 +29,13 @@
                 @Html.DisplayNameFor(model => model.Shipmentdate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Payment)
+                @Html.DisplayNameFor(model => model.Totalprice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartQuantity)
             </th>
             <th></th>
         </tr>
@@ -32,7 +44,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CartId)
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShoppingFirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Orderdate)
@@ -41,7 +59,13 @@
                 @Html.DisplayFor(modelItem => item.Shipmentdate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Payment.Paymethod)
+                @Html.DisplayFor(modelItem => item.Totalprice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CartQuantity)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ShoppingOrderId">Edit</a> |

@@ -1,5 +1,9 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+
+
+ 
+Here’s the HTML:
 }
 
 @media (min-width: 768px) {
@@ -21,6 +25,15 @@ html {
 body {
     margin-bottom: 60px;
     background-color: black;
-   
-   
+    color: white;
 }
+
+
+th {
+    color: white;
+}
+
+td {
+    color: white;
+}
+

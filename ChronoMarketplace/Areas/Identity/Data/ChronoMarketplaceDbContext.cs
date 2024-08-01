@@ -27,13 +27,13 @@ public class ChronoMarketplaceDbContext : IdentityDbContext<ChronoMarketplaceUse
 
     }
 
-    public DbSet<ChronoMarketplace.Models.Category> Category { get; set; } = default!;
+    public DbSet<ChronoMarketplace.Models.Brand> Brand { get; set; } = default!;
 
     public DbSet<ChronoMarketplace.Models.Payment> Payment { get; set; } = default!;
 
     public DbSet<ChronoMarketplace.Models.Product> Product { get; set; } = default!;
 
-    public DbSet<ChronoMarketplace.Models.ShoppingCart> Shopping_Cart { get; set; } = default!;
+    public DbSet<ChronoMarketplace.Models.ShoppingItem> Shopping_Cart { get; set; } = default!;
 
     public DbSet<ChronoMarketplace.Models.ShoppingOrder> Shopping_Order { get; set; } = default!;
 

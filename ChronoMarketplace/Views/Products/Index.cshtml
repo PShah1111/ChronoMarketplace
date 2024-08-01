@@ -2,10 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Home/Accessories.cshtml";
+    
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pimage)
             </th>
@@ -23,10 +26,10 @@
                 @Html.DisplayNameFor(model => model.Pprice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pstock)
+                @Html.DisplayNameFor(model => model.SpecialPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.Pstock)
             </th>
             <th></th>
         </tr>
@@ -34,6 +37,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.BrandId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pimage)
             </td>
@@ -44,10 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Pprice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pstock)
+                @Html.DisplayFor(modelItem => item.SpecialPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                @Html.DisplayFor(modelItem => item.Pstock)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |

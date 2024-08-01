@@ -17,7 +17,7 @@ namespace ChronoMarketplace.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.18")
+                .HasAnnotation("ProductVersion", "7.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -97,21 +97,21 @@ namespace ChronoMarketplace.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ChronoMarketplace.Models.Category", b =>
+            modelBuilder.Entity("ChronoMarketplace.Models.Brand", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("BrandName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("BrandId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Brand");
                 });
 
             modelBuilder.Entity("ChronoMarketplace.Models.Payment", b =>
@@ -132,13 +132,12 @@ namespace ChronoMarketplace.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserIdId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ShoppingOrderId")
+                        .HasColumnType("int");
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("ShoppingOrderId");
 
                     b.ToTable("Payment");
                 });
@@ -151,7 +150,7 @@ namespace ChronoMarketplace.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<string>("Pimage")
@@ -168,25 +167,23 @@ namespace ChronoMarketplace.Migrations
                     b.Property<int>("Pstock")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShoppingCartCartId")
+                    b.Property<int>("SpecialPrice")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ShoppingCartCartId");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingCart", b =>
+            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingItem", b =>
                 {
-                    b.Property<int>("CartId")
+                    b.Property<int>("ShoppingItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingItemId"));
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -194,16 +191,17 @@ namespace ChronoMarketplace.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("ShoppingOrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Totalprice")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserIdId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("ShoppingItemId");
 
-                    b.HasKey("CartId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("ShoppingOrderId");
 
                     b.ToTable("Shopping_Cart");
                 });
@@ -216,27 +214,32 @@ namespace ChronoMarketplace.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingOrderId"));
 
-                    b.Property<int>("CartId")
+                    b.Property<int>("CartQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Orderdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentID")
+                    b.Property<int>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Shipmentdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserIdId")
+                    b.Property<string>("ShoppingFirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Totalprice")
+                        .HasColumnType("int");
 
                     b.HasKey("ShoppingOrderId");
-
-                    b.HasIndex("PaymentID");
-
-                    b.HasIndex("UserIdId");
 
                     b.ToTable("Shopping_Order");
                 });
@@ -378,79 +381,45 @@ namespace ChronoMarketplace.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ShoppingCartShoppingOrder", b =>
-                {
-                    b.Property<int>("ShoppingCartsCartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ShoppingOrdersShoppingOrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShoppingCartsCartId", "ShoppingOrdersShoppingOrderId");
-
-                    b.HasIndex("ShoppingOrdersShoppingOrderId");
-
-                    b.ToTable("ShoppingCartShoppingOrder");
-                });
-
             modelBuilder.Entity("ChronoMarketplace.Models.Payment", b =>
                 {
-                    b.HasOne("ChronoMarketplace.Areas.Identity.Data.ChronoMarketplaceUser", "UserId")
-                        .WithMany()
-                        .HasForeignKey("UserIdId")
+                    b.HasOne("ChronoMarketplace.Models.ShoppingOrder", "ShoppingOrder")
+                        .WithMany("Payment")
+                        .HasForeignKey("ShoppingOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserId");
+                    b.Navigation("ShoppingOrder");
                 });
 
             modelBuilder.Entity("ChronoMarketplace.Models.Product", b =>
                 {
-                    b.HasOne("ChronoMarketplace.Models.Category", "Category")
+                    b.HasOne("ChronoMarketplace.Models.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ChronoMarketplace.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany("Products")
-                        .HasForeignKey("ShoppingCartCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("ShoppingCart");
+                    b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingCart", b =>
+            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingItem", b =>
                 {
-                    b.HasOne("ChronoMarketplace.Areas.Identity.Data.ChronoMarketplaceUser", "UserId")
-                        .WithMany()
-                        .HasForeignKey("UserIdId")
+                    b.HasOne("ChronoMarketplace.Models.Product", "Product")
+                        .WithMany("ShoppingItems")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserId");
-                });
-
-            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingOrder", b =>
-                {
-                    b.HasOne("ChronoMarketplace.Models.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentID")
+                    b.HasOne("ChronoMarketplace.Models.ShoppingOrder", "ShoppingOrder")
+                        .WithMany("ShoppingItems")
+                        .HasForeignKey("ShoppingOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ChronoMarketplace.Areas.Identity.Data.ChronoMarketplaceUser", "UserId")
-                        .WithMany()
-                        .HasForeignKey("UserIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Product");
 
-                    b.Navigation("Payment");
-
-                    b.Navigation("UserId");
+                    b.Navigation("ShoppingOrder");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -504,29 +473,21 @@ namespace ChronoMarketplace.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ShoppingCartShoppingOrder", b =>
-                {
-                    b.HasOne("ChronoMarketplace.Models.ShoppingCart", null)
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartsCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ChronoMarketplace.Models.ShoppingOrder", null)
-                        .WithMany()
-                        .HasForeignKey("ShoppingOrdersShoppingOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ChronoMarketplace.Models.Category", b =>
+            modelBuilder.Entity("ChronoMarketplace.Models.Brand", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingCart", b =>
+            modelBuilder.Entity("ChronoMarketplace.Models.Product", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("ShoppingItems");
+                });
+
+            modelBuilder.Entity("ChronoMarketplace.Models.ShoppingOrder", b =>
+                {
+                    b.Navigation("Payment");
+
+                    b.Navigation("ShoppingItems");
                 });
 #pragma warning restore 612, 618
         }

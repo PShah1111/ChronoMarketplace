@@ -1,4 +1,4 @@
-﻿@model ChronoMarketplace.Models.Payment
+﻿@model ChronoMarketplace.Models.ShoppingItem
 
 @{
     ViewData["Title"] = "Details";
@@ -8,26 +8,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Payment</h4>
+    <h4>ShoppingItem</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Payamount)
+            @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Payamount)
+            @Html.DisplayFor(model => model.Quantity)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Paymethod)
+            @Html.DisplayNameFor(model => model.Totalprice)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Paymethod)
+            @Html.DisplayFor(model => model.Totalprice)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Paydate)
+            @Html.DisplayNameFor(model => model.Product)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Paydate)
+            @Html.DisplayFor(model => model.Product.Pimage)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ShoppingOrder)
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.PaymentId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.ShoppingItemId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ChronoMarketplace.Migrations
 {
     /// <inheritdoc />
-    public partial class TableUpdated : Migration
+    public partial class UpdatedTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,16 +53,36 @@ namespace ChronoMarketplace.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Brand",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    BrandId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                    table.PrimaryKey("PK_Brand", x => x.BrandId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shopping_Order",
+                columns: table => new
+                {
+                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    PaymentId = table.Column<int>(type: "int", nullable: false),
+                    ShoppingFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Orderdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Shipmentdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Totalprice = table.Column<int>(type: "int", nullable: false),
+                    OrderStatus = table.Column<int>(type: "int", nullable: false),
+                    CartQuantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shopping_Order", x => x.ShoppingOrderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,24 +192,48 @@ namespace ChronoMarketplace.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
+                    Pimage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Pname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Pprice = table.Column<int>(type: "int", nullable: false),
+                    SpecialPrice = table.Column<int>(type: "int", nullable: false),
+                    Pstock = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Product_Brand_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brand",
+                        principalColumn: "BrandId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Payment",
                 columns: table => new
                 {
                     PaymentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserIdId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Payamount = table.Column<int>(type: "int", nullable: false),
                     Paymethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Paydate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Paydate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payment", x => x.PaymentId);
                     table.ForeignKey(
-                        name: "FK_Payment_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        name: "FK_Payment_Shopping_Order_ShoppingOrderId",
+                        column: x => x.ShoppingOrderId,
+                        principalTable: "Shopping_Order",
+                        principalColumn: "ShoppingOrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -197,102 +241,25 @@ namespace ChronoMarketplace.Migrations
                 name: "Shopping_Cart",
                 columns: table => new
                 {
-                    CartId = table.Column<int>(type: "int", nullable: false)
+                    ShoppingItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserIdId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Totalprice = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shopping_Cart", x => x.CartId);
+                    table.PrimaryKey("PK_Shopping_Cart", x => x.ShoppingItemId);
                     table.ForeignKey(
-                        name: "FK_Shopping_Cart_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Shopping_Order",
-                columns: table => new
-                {
-                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserIdId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false),
-                    Orderdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Shipmentdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shopping_Order", x => x.ShoppingOrderId);
-                    table.ForeignKey(
-                        name: "FK_Shopping_Order_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        name: "FK_Shopping_Cart_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Shopping_Order_Payment_PaymentID",
-                        column: x => x.PaymentID,
-                        principalTable: "Payment",
-                        principalColumn: "PaymentId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Product",
-                columns: table => new
-                {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Pimage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pprice = table.Column<int>(type: "int", nullable: false),
-                    Pstock = table.Column<int>(type: "int", nullable: false),
-                    ShoppingCartCartId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
-                    table.ForeignKey(
-                        name: "FK_Product_Category_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Category",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Product_Shopping_Cart_ShoppingCartCartId",
-                        column: x => x.ShoppingCartCartId,
-                        principalTable: "Shopping_Cart",
-                        principalColumn: "CartId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShoppingCartShoppingOrder",
-                columns: table => new
-                {
-                    ShoppingCartsCartId = table.Column<int>(type: "int", nullable: false),
-                    ShoppingOrdersShoppingOrderId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShoppingCartShoppingOrder", x => new { x.ShoppingCartsCartId, x.ShoppingOrdersShoppingOrderId });
-                    table.ForeignKey(
-                        name: "FK_ShoppingCartShoppingOrder_Shopping_Cart_ShoppingCartsCartId",
-                        column: x => x.ShoppingCartsCartId,
-                        principalTable: "Shopping_Cart",
-                        principalColumn: "CartId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ShoppingCartShoppingOrder_Shopping_Order_ShoppingOrdersShoppingOrderId",
-                        column: x => x.ShoppingOrdersShoppingOrderId,
+                        name: "FK_Shopping_Cart_Shopping_Order_ShoppingOrderId",
+                        column: x => x.ShoppingOrderId,
                         principalTable: "Shopping_Order",
                         principalColumn: "ShoppingOrderId",
                         onDelete: ReferentialAction.Cascade);
@@ -338,39 +305,24 @@ namespace ChronoMarketplace.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payment_UserIdId",
+                name: "IX_Payment_ShoppingOrderId",
                 table: "Payment",
-                column: "UserIdId");
+                column: "ShoppingOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_CategoryId",
+                name: "IX_Product_BrandId",
                 table: "Product",
-                column: "CategoryId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_ShoppingCartCartId",
-                table: "Product",
-                column: "ShoppingCartCartId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shopping_Cart_UserIdId",
+                name: "IX_Shopping_Cart_ProductId",
                 table: "Shopping_Cart",
-                column: "UserIdId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shopping_Order_PaymentID",
-                table: "Shopping_Order",
-                column: "PaymentID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shopping_Order_UserIdId",
-                table: "Shopping_Order",
-                column: "UserIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCartShoppingOrder_ShoppingOrdersShoppingOrderId",
-                table: "ShoppingCartShoppingOrder",
-                column: "ShoppingOrdersShoppingOrderId");
+                name: "IX_Shopping_Cart_ShoppingOrderId",
+                table: "Shopping_Cart",
+                column: "ShoppingOrderId");
         }
 
         /// <inheritdoc />
@@ -392,28 +344,25 @@ namespace ChronoMarketplace.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Product");
-
-            migrationBuilder.DropTable(
-                name: "ShoppingCartShoppingOrder");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Category");
+                name: "Payment");
 
             migrationBuilder.DropTable(
                 name: "Shopping_Cart");
 
             migrationBuilder.DropTable(
-                name: "Shopping_Order");
-
-            migrationBuilder.DropTable(
-                name: "Payment");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Shopping_Order");
+
+            migrationBuilder.DropTable(
+                name: "Brand");
         }
     }
 }

@@ -10,101 +10,103 @@ using ChronoMarketplace.Models;
 
 namespace ChronoMarketplace.Controllers
 {
-    public class CategoriesController : Controller
+    public class BrandsController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;
 
-        public CategoriesController(ChronoMarketplaceDbContext context)
+        public BrandsController(ChronoMarketplaceDbContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: Brands
         public async Task<IActionResult> Index()
         {
-              return _context.Category != null ? 
-                          View(await _context.Category.ToListAsync()) :
-                          Problem("Entity set 'ChronoMarketplaceDbContext.Category'  is null.");
+              return _context.Brand != null ? 
+                          View(await _context.Brand.ToListAsync()) :
+                          Problem("Entity set 'ChronoMarketplaceDbContext.Brand'  is null.");
         }
 
-        // GET: Categories/Details/5
+
+
+        // GET: Brands/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _context.Brand == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var brand = await _context.Brand
+                .FirstOrDefaultAsync(m => m.BrandId == id);
+            if (brand == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(brand);
         }
 
-        // GET: Categories/Create
+        // GET: Brands/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Brands/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Create([Bind("BrandId,BrandName")] Brand brand)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(brand);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(brand);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Brands/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _context.Brand == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var brand = await _context.Brand.FindAsync(id);
+            if (brand == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(brand);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Brands/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("BrandId,BrandName")] Brand brand)
         {
-            if (id != category.CategoryId)
+            if (id != brand.BrandId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(brand);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!BrandExists(brand.BrandId))
                     {
                         return NotFound();
                     }
@@ -115,49 +117,49 @@ namespace ChronoMarketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(brand);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Brands/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _context.Brand == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var brand = await _context.Brand
+                .FirstOrDefaultAsync(m => m.BrandId == id);
+            if (brand == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(brand);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Category == null)
+            if (_context.Brand == null)
             {
-                return Problem("Entity set 'ChronoMarketplaceDbContext.Category'  is null.");
+                return Problem("Entity set 'ChronoMarketplaceDbContext.Brand'  is null.");
             }
-            var category = await _context.Category.FindAsync(id);
-            if (category != null)
+            var brand = await _context.Brand.FindAsync(id);
+            if (brand != null)
             {
-                _context.Category.Remove(category);
+                _context.Brand.Remove(brand);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool BrandExists(int id)
         {
-          return (_context.Category?.Any(e => e.CategoryId == id)).GetValueOrDefault();
+          return (_context.Brand?.Any(e => e.BrandId == id)).GetValueOrDefault();
         }
     }
 }

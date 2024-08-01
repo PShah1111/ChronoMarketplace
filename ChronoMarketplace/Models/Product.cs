@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ChronoMarketplace.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ChronoMarketplace.Models
@@ -6,31 +7,36 @@ namespace ChronoMarketplace.Models
     public class Product
     {
 
-        [Key] public int ProductId { get; set; }
+        public int ProductId { get; set; } //Primary Key
 
+        [DisplayName("Brand Name")]
         [Required]
-        [DisplayName("Category ID")]
-        public int CategoryId { get; set; }
+        public int BrandId { get; set; } //Foreign Key to Brands Table
 
-        [Required]
         [DisplayName("Product Image")]
+        [Required]
         public string Pimage { get; set; }
 
-        [Required]
         [DisplayName("Product Name")]
-        public string? Pname { get; set; }
+        [Required]
+        public string Pname { get; set; }
 
         [Required]
         [DisplayName("Product Price")]
         public int Pprice { get; set; }
 
         [Required]
-        [DisplayName("Product Stock")]
+        [DisplayName("Special Price")]
+        public int SpecialPrice { get; set; }
+
+        [DisplayName("Stock")]
+        [Required]
         public int Pstock { get; set; }
 
 
 
-        public Category Category  { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
+        public Brand Brand { get; set; }
+        public ICollection<ShoppingItem> ShoppingItems { get; set; } //One to Many Relationship: One Product Associated w/ Many Shopping Items
     }
 }
+

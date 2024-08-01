@@ -22,8 +22,9 @@ namespace ChronoMarketplace.Controllers
         // GET: ShoppingOrders
         public async Task<IActionResult> Index()
         {
-            var chronoMarketplaceDbContext = _context.Shopping_Order.Include(s => s.Payment);
-            return View(await chronoMarketplaceDbContext.ToListAsync());
+              return _context.Shopping_Order != null ? 
+                          View(await _context.Shopping_Order.ToListAsync()) :
+                          Problem("Entity set 'ChronoMarketplaceDbContext.Shopping_Order'  is null.");
         }
 
         // GET: ShoppingOrders/Details/5
@@ -35,7 +36,6 @@ namespace ChronoMarketplace.Controllers
             }
 
             var shoppingOrder = await _context.Shopping_Order
-                .Include(s => s.Payment)
                 .FirstOrDefaultAsync(m => m.ShoppingOrderId == id);
             if (shoppingOrder == null)
             {
@@ -48,7 +48,6 @@ namespace ChronoMarketplace.Controllers
         // GET: ShoppingOrders/Create
         public IActionResult Create()
         {
-            ViewData["PaymentID"] = new SelectList(_context.Payment, "PaymentId", "Paymethod");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShoppingOrderId,CartId,Orderdate,Shipmentdate,PaymentID")] ShoppingOrder shoppingOrder)
+        public async Task<IActionResult> Create([Bind("ShoppingOrderId,CustomerId,PaymentId,ShoppingFirstName,Orderdate,Shipmentdate,Totalprice,OrderStatus,CartQuantity")] ShoppingOrder shoppingOrder)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,6 @@ namespace ChronoMarketplace.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PaymentID"] = new SelectList(_context.Payment, "PaymentId", "Paymethod", shoppingOrder.PaymentID);
             return View(shoppingOrder);
         }
 
@@ -82,7 +80,6 @@ namespace ChronoMarketplace.Controllers
             {
                 return NotFound();
             }
-            ViewData["PaymentID"] = new SelectList(_context.Payment, "PaymentId", "Paymethod", shoppingOrder.PaymentID);
             return View(shoppingOrder);
         }
 
@@ -91,7 +88,7 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShoppingOrderId,CartId,Orderdate,Shipmentdate,PaymentID")] ShoppingOrder shoppingOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("ShoppingOrderId,CustomerId,PaymentId,ShoppingFirstName,Orderdate,Shipmentdate,Totalprice,OrderStatus,CartQuantity")] ShoppingOrder shoppingOrder)
         {
             if (id != shoppingOrder.ShoppingOrderId)
             {
@@ -118,7 +115,6 @@ namespace ChronoMarketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PaymentID"] = new SelectList(_context.Payment, "PaymentId", "Paymethod", shoppingOrder.PaymentID);
             return View(shoppingOrder);
         }
 
@@ -131,7 +127,6 @@ namespace ChronoMarketplace.Controllers
             }
 
             var shoppingOrder = await _context.Shopping_Order
-                .Include(s => s.Payment)
                 .FirstOrDefaultAsync(m => m.ShoppingOrderId == id);
             if (shoppingOrder == null)
             {

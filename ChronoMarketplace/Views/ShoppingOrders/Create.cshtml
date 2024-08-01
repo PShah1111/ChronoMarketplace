@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Home/Accessories.cshtml";
 }
 
 <h1>Create</h1>
@@ -14,9 +13,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CartId" class="control-label"></label>
-                <input asp-for="CartId" class="form-control" />
-                <span asp-validation-for="CartId" class="text-danger"></span>
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentId" class="control-label"></label>
+                <input asp-for="PaymentId" class="form-control" />
+                <span asp-validation-for="PaymentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoppingFirstName" class="control-label"></label>
+                <input asp-for="ShoppingFirstName" class="form-control" />
+                <span asp-validation-for="ShoppingFirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Orderdate" class="control-label"></label>
@@ -29,8 +38,19 @@
                 <span asp-validation-for="Shipmentdate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaymentID" class="control-label"></label>
-                <select asp-for="PaymentID" class ="form-control" asp-items="ViewBag.PaymentID"></select>
+                <label asp-for="Totalprice" class="control-label"></label>
+                <input asp-for="Totalprice" class="form-control" />
+                <span asp-validation-for="Totalprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderStatus" class="control-label"></label>
+                <select asp-for="OrderStatus" class="form-control"></select>
+                <span asp-validation-for="OrderStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CartQuantity" class="control-label"></label>
+                <input asp-for="CartQuantity" class="form-control" />
+                <span asp-validation-for="CartQuantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

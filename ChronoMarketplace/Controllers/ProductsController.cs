@@ -22,8 +22,9 @@ namespace ChronoMarketplace.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var chronoMarketplaceDbContext = _context.Product.Include(p => p.Category);
-            return View(await chronoMarketplaceDbContext.ToListAsync());
+              return _context.Product != null ? 
+                          View(await _context.Product.ToListAsync()) :
+                          Problem("Entity set 'ChronoMarketplaceDbContext.Product'  is null.");
         }
 
         // GET: Products/Details/5
@@ -35,7 +36,6 @@ namespace ChronoMarketplace.Controllers
             }
 
             var product = await _context.Product
-                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -48,7 +48,6 @@ namespace ChronoMarketplace.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -57,15 +56,14 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,CategoryId,Pimage,Pname,Pprice,Pstock")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,CategoryId,Pimage,Pname,Pprice,SpecialPrice,Pstock")] Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -82,7 +80,6 @@ namespace ChronoMarketplace.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -91,14 +88,14 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,Pimage,Pname,Pprice,Pstock")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,Pimage,Pname,Pprice,SpecialPrice,Pstock")] Product product)
         {
             if (id != product.ProductId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -118,7 +115,6 @@ namespace ChronoMarketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", product.CategoryId);
             return View(product);
         }
 
@@ -131,7 +127,6 @@ namespace ChronoMarketplace.Controllers
             }
 
             var product = await _context.Product
-                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {

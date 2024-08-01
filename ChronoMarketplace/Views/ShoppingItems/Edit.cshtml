@@ -1,22 +1,27 @@
-﻿@model ChronoMarketplace.Models.ShoppingCart
+﻿@model ChronoMarketplace.Models.ShoppingItem
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Home/Accessories.cshtml";
+  
 }
 
 <h1>Edit</h1>
 
-<h4>ShoppingCart</h4>
+<h4>ShoppingItem</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CartId" />
+            <input type="hidden" asp-for="ShoppingItemId" />
+            <div class="form-group">
+                <label asp-for="ShoppingOrderId" class="control-label"></label>
+                <select asp-for="ShoppingOrderId" class="form-control" asp-items="ViewBag.ShoppingOrderId"></select>
+                <span asp-validation-for="ShoppingOrderId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
-                <input asp-for="ProductId" class="form-control" />
+                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">

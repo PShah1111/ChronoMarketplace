@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\ShoppingOrders\**" />
     <Compile Remove="wwwroot\NewFolder\**" />
-    <Content Remove="Views\ShoppingOrders\**" />
     <Content Remove="wwwroot\NewFolder\**" />
-    <EmbeddedResource Remove="Views\ShoppingOrders\**" />
     <EmbeddedResource Remove="wwwroot\NewFolder\**" />
-    <None Remove="Views\ShoppingOrders\**" />
     <None Remove="wwwroot\NewFolder\**" />
   </ItemGroup>
 
@@ -35,19 +31,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.17" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\ShoppingOrders\Create.cshtml" />
-    <None Include="Views\ShoppingOrders\Delete.cshtml" />
-    <None Include="Views\ShoppingOrders\Details.cshtml" />
-    <None Include="Views\ShoppingOrders\Edit.cshtml" />
-    <None Include="Views\ShoppingOrders\Index.cshtml" />
   </ItemGroup>
 
 </Project>
