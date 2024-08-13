@@ -34,6 +34,7 @@ namespace ChronoMarketplace.Models
         [Required]
         [DisplayName("Shipment Date")]
         [DataType(DataType.Date)]
+        
         public DateTime Shipmentdate { get; set; }
 
         [Required]

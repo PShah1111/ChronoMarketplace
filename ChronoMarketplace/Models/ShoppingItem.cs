@@ -18,6 +18,9 @@ namespace ChronoMarketplace.Models
 
         [DisplayName("Product Quantity")]
         [Required]
+
+        [RegularExpression("^\\d+$", ErrorMessage = "Please enter a valid Quantity Amount")] //Regualar Expression Value for a Positive Integer Value. As a quantity amount cannot be negative.
+        
         public int Quantity { get; set; }
 
         [Required]
