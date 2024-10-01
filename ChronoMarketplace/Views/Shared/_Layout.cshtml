@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -43,11 +44,7 @@
                                                 <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Brands"> Brands</a></li>
                                                 <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Accessories"> Accessories</a></li>
                                         
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="Brands" asp-action="Index"> Brands Table</a></li>
-                                         <li><a class="dropdown-item" asp-area="" asp-controller="Payments" asp-action="Index"> Payments Table</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Index"> Products Table</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="ShoppingItems" asp-action="Index"> Shopping Items Table</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="ShoppingOrders" asp-action="Index"> Shopping Orders Table</a></li>
+    
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
@@ -63,6 +60,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"><FONT COLOR="white">Contact</FONT></a>
                                         </li>
+                                
                                         
 
                                        
@@ -72,18 +70,17 @@
                                     
                                 </div>
                             </div>
-                           
-                
+                          
                       
                         </nav>
                     </ul>
                 </div>
         <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search for products..." aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
         </form>
-
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cart"><img src="~/images/shopping cart.jpg" alt="Shopping Cart" width="40px" /></a>
+        
+        <span><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Cart"><img src="~/images/shopping cart.jpg" alt="Shopping Cart" width="60px" /></a></span>
         
                 <partial name="_LoginPartial" />
             </div>
@@ -98,6 +95,11 @@
     <footer class="border-top footer text-muted">
         <div class="container" style="color:white">
             &copy; 2024 - ChronoMarketplace - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
+            <a asp-area="" asp-controller="Payments" asp-action="Index">Payments</a>
+            <a asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+            <a asp-area="" asp-controller="ShoppingItems" asp-action="Index">Items</a>
+            <a asp-area="" asp-controller="ShoppingOrders" asp-action="Index">Orders</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

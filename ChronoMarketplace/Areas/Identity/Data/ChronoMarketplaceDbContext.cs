@@ -17,13 +17,36 @@ public class ChronoMarketplaceDbContext : IdentityDbContext<ChronoMarketplaceUse
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
+        builder.Entity<IdentityUserLogin<string>>(entity =>
+        {
+            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+        });
 
+        builder.Entity<IdentityRole>().HasData(
+            new IdentityRole { Id = "1", Name = "Admin", NormalizedName = "ADMIN" }
+            );
 
-        builder.ApplyConfiguration(new ChronoMarketplaceUserEntityConfiguration());
+        var harsher = new PasswordHasher<ChronoMarketplaceUser>();
+        builder.Entity<ChronoMarketplaceUser>().HasData(
 
+            new ChronoMarketplaceUser
+            {
+                Id = "1",
+                FirstName = "Admin",
+                LastName = "Team",
+                UserName = "admin@chronomarketplace.com",
+                NormalizedUserName = "ADMIN@CHRONOMARKETPLACE.COM",
+                Email = "admin@chronomarketplace.com",
+                NormalizedEmail = "ADMIN@CHRONOMARKETPLACE.COM",
+                EmailConfirmed = true,
+                PasswordHash = harsher.HashPassword(null, "Admin123")
+            }
+
+        );
+
+        builder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string> { RoleId = "1", UserId = "1" }
+        );
 
     }
 
@@ -47,3 +70,4 @@ public class ChronoMarketplaceUserEntityConfiguration : IEntityTypeConfiguration
         builder.Property(u => u.LastName).HasMaxLength(255);
     }
 }
+

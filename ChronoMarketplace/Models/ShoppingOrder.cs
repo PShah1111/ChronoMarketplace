@@ -17,10 +17,13 @@ namespace ChronoMarketplace.Models
 
         [Key]
         [Display(Name = "Shopping Order ID")]
+        [StringLength(50)]
         public int ShoppingOrderId { get; set; } //Primary Key 
 
+        [StringLength(50)]
         public int CustomerId { get; set; } //Foreign Key to Customers Table
 
+        [StringLength(50)]
         public int PaymentId { get; set; } //Foreign Key to Payments Table
          
         [Display(Name = "Customer")]
@@ -36,13 +39,16 @@ namespace ChronoMarketplace.Models
         [DataType(DataType.Date)]
         
         public DateTime Shipmentdate { get; set; }
+        [StringLength(50)]
 
         [Required]
         [DisplayName("Total Price")]
+        [Range(0, 100000)]
+        [DataType(DataType.Currency)]
         public int Totalprice { get; set; }
 
         [DisplayName("Order Status")]
-        public Status OrderStatus { get; set; }
+        public Status OrderStatus { get; set; } //Status Options: Incompleted, InProgress, Completed
 
         [DisplayName("Items in Cart")]
         public int CartQuantity { get; set; }

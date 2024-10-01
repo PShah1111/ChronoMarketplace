@@ -7,6 +7,7 @@ namespace ChronoMarketplace.Models
     {
         public int BrandId { get; set; } //Primary Key
         [DisplayName ("Brand Name")]
+        [StringLength(50)]
 
         public string BrandName { get; set; }
 

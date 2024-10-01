@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChronoMarketplace.Areas.Identity.Data;
 using ChronoMarketplace.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChronoMarketplace.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandsController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;

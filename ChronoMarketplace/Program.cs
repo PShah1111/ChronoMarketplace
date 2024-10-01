@@ -6,7 +6,12 @@ var connectionString = builder.Configuration.GetConnectionString("ChronoMarketpl
 
 builder.Services.AddDbContext<ChronoMarketplaceDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ChronoMarketplaceUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ChronoMarketplaceDbContext>();
+builder.Services.AddDefaultIdentity<ChronoMarketplaceUser>(options => options.SignIn.RequireConfirmedAccount = false)
+.AddDefaultTokenProviders()
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<ChronoMarketplaceDbContext>();
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
