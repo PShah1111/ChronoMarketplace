@@ -30,8 +30,8 @@ namespace ChronoMarketplace.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -56,9 +56,9 @@ namespace ChronoMarketplace.Migrations
                 name: "Brand",
                 columns: table => new
                 {
-                    BrandId = table.Column<int>(type: "int", nullable: false)
+                    BrandId = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BrandName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,15 +69,12 @@ namespace ChronoMarketplace.Migrations
                 name: "Shopping_Order",
                 columns: table => new
                 {
-                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false)
+                    ShoppingOrderId = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ShoppingFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Orderdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Shipmentdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Totalprice = table.Column<int>(type: "int", nullable: false),
-                    OrderStatus = table.Column<int>(type: "int", nullable: false),
+                    Totalprice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CartQuantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -195,14 +192,13 @@ namespace ChronoMarketplace.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandId = table.Column<int>(type: "int", nullable: false),
-                    Pimage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pprice = table.Column<int>(type: "int", nullable: false),
-                    SpecialPrice = table.Column<int>(type: "int", nullable: false),
-                    Pstock = table.Column<int>(type: "int", nullable: false)
+                    BrandId = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    ImageName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,12 +215,12 @@ namespace ChronoMarketplace.Migrations
                 name: "Payment",
                 columns: table => new
                 {
-                    PaymentId = table.Column<int>(type: "int", nullable: false)
+                    PaymentId = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Payamount = table.Column<int>(type: "int", nullable: false),
-                    Paymethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Paydate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false)
+                    ShoppingOrderId = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    PayAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PayMethod = table.Column<int>(type: "int", nullable: false),
+                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -241,12 +237,11 @@ namespace ChronoMarketplace.Migrations
                 name: "Shopping_Cart",
                 columns: table => new
                 {
-                    ShoppingItemId = table.Column<int>(type: "int", nullable: false)
+                    ShoppingItemId = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ShoppingOrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Totalprice = table.Column<int>(type: "int", nullable: false)
+                    ShoppingOrderId = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    ProductId = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -264,6 +259,21 @@ namespace ChronoMarketplace.Migrations
                         principalColumn: "ShoppingOrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1", null, "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "1", 0, "0583d63c-243e-473d-995e-fdffa51a22ec", "admin@chronomarketplace.com", true, "Admin", "Team", false, null, "ADMIN@CHRONOMARKETPLACE.COM", "ADMIN@CHRONOMARKETPLACE.COM", "AQAAAAIAAYagAAAAEBGSsNULWYD1O4UOZVMER4lLum1JJTE6MWlAgsiBKLjZ8L3emjFwaLVxPedP8zFm/A==", null, false, "bb26334b-b15a-4664-bbd5-084236cf2a2e", false, "admin@chronomarketplace.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "1", "1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

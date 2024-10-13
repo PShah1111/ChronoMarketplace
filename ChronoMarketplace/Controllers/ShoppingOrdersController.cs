@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChronoMarketplace.Areas.Identity.Data;
 using ChronoMarketplace.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChronoMarketplace.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ShoppingOrdersController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;
@@ -58,9 +56,9 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShoppingOrderId,CustomerId,PaymentId,ShoppingFirstName,Orderdate,Shipmentdate,Totalprice,OrderStatus,CartQuantity")] ShoppingOrder shoppingOrder)
+        public async Task<IActionResult> Create([Bind("ShoppingOrderId,UserName,ShoppingFirstName,Orderdate,Totalprice,CartQuantity")] ShoppingOrder shoppingOrder)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(shoppingOrder);
                 await _context.SaveChangesAsync();
@@ -90,14 +88,14 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShoppingOrderId,CustomerId,PaymentId,ShoppingFirstName,Orderdate,Shipmentdate,Totalprice,OrderStatus,CartQuantity")] ShoppingOrder shoppingOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("ShoppingOrderId,UserName,ShoppingFirstName,Orderdate,Totalprice,CartQuantity")] ShoppingOrder shoppingOrder)
         {
             if (id != shoppingOrder.ShoppingOrderId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {

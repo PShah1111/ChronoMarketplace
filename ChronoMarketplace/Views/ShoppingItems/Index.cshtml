@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ChronoMarketplace.Models.ShoppingItem>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shopping Items";
     
 }
 
-
-
-<h1>Shopping Items</h1>
-
+<h1>Shopping Cart</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -17,13 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Totalprice)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShoppingOrder)
@@ -34,17 +28,14 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.PDescription)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Totalprice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Pimage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShoppingOrder.ShoppingOrderId)
+                @Html.DisplayFor(modelItem => item.ShoppingOrder.ShoppingFirstName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ShoppingItemId">Edit</a> |

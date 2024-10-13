@@ -95,11 +95,15 @@
     <footer class="border-top footer text-muted">
         <div class="container" style="color:white">
             &copy; 2024 - ChronoMarketplace - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
-            <a asp-area="" asp-controller="Payments" asp-action="Index">Payments</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
+                <a asp-area="" asp-controller="Payments" asp-action="Index">Payments</a>
+                <a asp-area="" asp-controller="ShoppingItems" asp-action="Index">Items</a>
+                <a asp-area="" asp-controller="ShoppingOrders" asp-action="Index">Orders</a>
+            }
             <a asp-area="" asp-controller="Products" asp-action="Index">Products</a>
-            <a asp-area="" asp-controller="ShoppingItems" asp-action="Index">Items</a>
-            <a asp-area="" asp-controller="ShoppingOrders" asp-action="Index">Orders</a>
+            
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

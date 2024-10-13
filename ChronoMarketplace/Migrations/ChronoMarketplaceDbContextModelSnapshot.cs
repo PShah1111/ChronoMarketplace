@@ -99,7 +99,7 @@ namespace ChronoMarketplace.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6ba659bd-0c0f-4710-85d6-730dd819787e",
+                            ConcurrencyStamp = "0583d63c-243e-473d-995e-fdffa51a22ec",
                             Email = "admin@chronomarketplace.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -107,9 +107,9 @@ namespace ChronoMarketplace.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@CHRONOMARKETPLACE.COM",
                             NormalizedUserName = "ADMIN@CHRONOMARKETPLACE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIcyTIySEdB6irPtMrhOroiYZ5zxyC1Fdw7YqYoPGNFgqLHpLOXP5yuM6qaOD2QZQA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBGSsNULWYD1O4UOZVMER4lLum1JJTE6MWlAgsiBKLjZ8L3emjFwaLVxPedP8zFm/A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2c603594-e1be-40ae-99ba-11db3a1ce314",
+                            SecurityStamp = "bb26334b-b15a-4664-bbd5-084236cf2a2e",
                             TwoFactorEnabled = false,
                             UserName = "admin@chronomarketplace.com"
                         });
@@ -119,6 +119,7 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
@@ -137,21 +138,22 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
 
-                    b.Property<decimal>("Payamount")
+                    b.Property<decimal>("PayAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Paydate")
+                    b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Paymethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PayMethod")
+                        .HasColumnType("int");
 
                     b.Property<int>("ShoppingOrderId")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("PaymentId");
@@ -174,19 +176,21 @@ namespace ChronoMarketplace.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.Property<string>("Pname")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Pprice")
-                        .HasColumnType("int");
+                    b.Property<string>("PDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pstock")
-                        .HasColumnType("int");
+                    b.Property<string>("PName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpecialPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -199,20 +203,20 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("ShoppingItemId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingItemId"));
 
                     b.Property<int>("ProductId")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("ShoppingOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Totalprice")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("ShoppingItemId");
@@ -236,30 +240,20 @@ namespace ChronoMarketplace.Migrations
                     b.Property<int>("CartQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
-                        .HasMaxLength(50)
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Orderdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PaymentId")
-                        .HasMaxLength(50)
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Shipmentdate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShoppingFirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Totalprice")
+                    b.Property<decimal>("Totalprice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ShoppingOrderId");
 

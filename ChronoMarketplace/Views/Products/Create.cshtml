@@ -15,33 +15,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="BrandId" class="control-label"></label>
-                <input asp-for="BrandId" class="form-control" />
-                <span asp-validation-for="BrandId" class="text-danger"></span>
+                <select asp-for="BrandId" class ="form-control" asp-items="ViewBag.BrandId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Pimage" class="control-label"></label>
-                <input asp-for="Pimage" class="form-control" />
-                <span asp-validation-for="Pimage" class="text-danger"></span>
+                <label asp-for="PImage" class="control-label"></label>
+                <input asp-for="PImage" class="form-control" />
+                <span asp-validation-for="PImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pname" class="control-label"></label>
-                <input asp-for="Pname" class="form-control" />
-                <span asp-validation-for="Pname" class="text-danger"></span>
+                <label asp-for="ImageName" class="control-label"></label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pprice" class="control-label"></label>
-                <input asp-for="Pprice" class="form-control" />
-                <span asp-validation-for="Pprice" class="text-danger"></span>
+                <label asp-for="PName" class="control-label"></label>
+                <input asp-for="PName" class="form-control" />
+                <span asp-validation-for="PName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SpecialPrice" class="control-label"></label>
-                <input asp-for="SpecialPrice" class="form-control" />
-                <span asp-validation-for="SpecialPrice" class="text-danger"></span>
+                <label asp-for="PDescription" class="control-label"></label>
+                <input asp-for="PDescription" class="form-control" />
+                <span asp-validation-for="PDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pstock" class="control-label"></label>
-                <input asp-for="Pstock" class="form-control" />
-                <span asp-validation-for="Pstock" class="text-danger"></span>
+                <label asp-for="PPrice" class="control-label"></label>
+                <input asp-for="PPrice" class="form-control" />
+                <span asp-validation-for="PPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -1,5 +1,5 @@
-﻿﻿INSERT INTO dbo.Brands (
-Brand_Name
+﻿INSERT INTO dbo.Brands (
+BrandName
 )
 VALUES
 (

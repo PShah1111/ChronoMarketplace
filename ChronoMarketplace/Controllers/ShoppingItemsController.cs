@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChronoMarketplace.Areas.Identity.Data;
 using ChronoMarketplace.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChronoMarketplace.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ShoppingItemsController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;
@@ -51,8 +49,8 @@ namespace ChronoMarketplace.Controllers
         // GET: ShoppingItems/Create
         public IActionResult Create()
         {
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Pimage");
-            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingOrderId");
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "PDescription");
+            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingFirstName");
             return View();
         }
 
@@ -61,7 +59,7 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShoppingItemId,ShoppingOrderId,ProductId,Quantity,Totalprice")] ShoppingItem shoppingItem)
+        public async Task<IActionResult> Create([Bind("ShoppingItemId,ShoppingOrderId,ProductId,Quantity")] ShoppingItem shoppingItem)
         {
             if (!ModelState.IsValid)
             {
@@ -69,8 +67,8 @@ namespace ChronoMarketplace.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Pimage", shoppingItem.ProductId);
-            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingOrderId", shoppingItem.ShoppingOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "PDescription", shoppingItem.ProductId);
+            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingFirstName", shoppingItem.ShoppingOrderId);
             return View(shoppingItem);
         }
 
@@ -87,8 +85,8 @@ namespace ChronoMarketplace.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Pimage", shoppingItem.ProductId);
-            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingOrderId", shoppingItem.ShoppingOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "PDescription", shoppingItem.ProductId);
+            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingFirstName", shoppingItem.ShoppingOrderId);
             return View(shoppingItem);
         }
 
@@ -97,7 +95,7 @@ namespace ChronoMarketplace.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ShoppingItemId,ShoppingOrderId,ProductId,Quantity,Totalprice")] ShoppingItem shoppingItem)
+        public async Task<IActionResult> Edit(int id, [Bind("ShoppingItemId,ShoppingOrderId,ProductId,Quantity")] ShoppingItem shoppingItem)
         {
             if (id != shoppingItem.ShoppingItemId)
             {
@@ -124,8 +122,8 @@ namespace ChronoMarketplace.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Pimage", shoppingItem.ProductId);
-            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingOrderId", shoppingItem.ShoppingOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "PDescription", shoppingItem.ProductId);
+            ViewData["ShoppingOrderId"] = new SelectList(_context.Shopping_Order, "ShoppingOrderId", "ShoppingFirstName", shoppingItem.ShoppingOrderId);
             return View(shoppingItem);
         }
 

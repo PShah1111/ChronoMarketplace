@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChronoMarketplace.Migrations
 {
     [DbContext(typeof(ChronoMarketplaceDbContext))]
-    [Migration("20240723215243_UpdatedTable")]
+    [Migration("20241013025053_UpdatedTable")]
     partial class UpdatedTable
     {
         /// <inheritdoc />
@@ -46,13 +46,11 @@ namespace ChronoMarketplace.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -98,19 +96,41 @@ namespace ChronoMarketplace.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0583d63c-243e-473d-995e-fdffa51a22ec",
+                            Email = "admin@chronomarketplace.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "Team",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@CHRONOMARKETPLACE.COM",
+                            NormalizedUserName = "ADMIN@CHRONOMARKETPLACE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBGSsNULWYD1O4UOZVMER4lLum1JJTE6MWlAgsiBKLjZ8L3emjFwaLVxPedP8zFm/A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bb26334b-b15a-4664-bbd5-084236cf2a2e",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@chronomarketplace.com"
+                        });
                 });
 
             modelBuilder.Entity("ChronoMarketplace.Models.Brand", b =>
                 {
                     b.Property<int>("BrandId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
 
                     b.Property<string>("BrandName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("BrandId");
 
@@ -121,21 +141,22 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
 
-                    b.Property<int>("Payamount")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PayAmount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Paydate")
+                    b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Paymethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PayMethod")
+                        .HasColumnType("int");
 
                     b.Property<int>("ShoppingOrderId")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("PaymentId");
@@ -149,29 +170,30 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<int>("BrandId")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.Property<string>("Pimage")
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pname")
+                    b.Property<string>("PName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pprice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Pstock")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecialPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -184,20 +206,20 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("ShoppingItemId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingItemId"));
 
                     b.Property<int>("ProductId")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("ShoppingOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Totalprice")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.HasKey("ShoppingItemId");
@@ -213,6 +235,7 @@ namespace ChronoMarketplace.Migrations
                 {
                     b.Property<int>("ShoppingOrderId")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingOrderId"));
@@ -220,27 +243,20 @@ namespace ChronoMarketplace.Migrations
                     b.Property<int>("CartQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Orderdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Shipmentdate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShoppingFirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Totalprice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Totalprice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ShoppingOrderId");
 
@@ -272,6 +288,14 @@ namespace ChronoMarketplace.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -361,6 +385,13 @@ namespace ChronoMarketplace.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<ChronoMarketplace.Models.ShoppingOrder>
 
 @{
-    ViewData["Title"] = "Index";
-  
+    ViewData["Title"] = "Shopping Orders";
+    
 }
 
 <h1>Shopping Orders</h1>
@@ -13,15 +13,6 @@
 <table class="table">
     <thead>
         <tr>
-            
-            
-
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShoppingFirstName)
             </th>
@@ -29,16 +20,7 @@
                 @Html.DisplayNameFor(model => model.Orderdate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Shipmentdate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Totalprice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CartQuantity)
             </th>
             <th></th>
         </tr>
@@ -47,28 +29,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ShoppingFirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Orderdate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Shipmentdate)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Totalprice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CartQuantity)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ShoppingOrderId">Edit</a> |

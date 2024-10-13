@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChronoMarketplace.Areas.Identity.Data;
 using ChronoMarketplace.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ChronoMarketplace.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class BrandsController : Controller
     {
         private readonly ChronoMarketplaceDbContext _context;
@@ -28,8 +26,6 @@ namespace ChronoMarketplace.Controllers
                           View(await _context.Brand.ToListAsync()) :
                           Problem("Entity set 'ChronoMarketplaceDbContext.Brand'  is null.");
         }
-
-
 
         // GET: Brands/Details/5
         public async Task<IActionResult> Details(int? id)

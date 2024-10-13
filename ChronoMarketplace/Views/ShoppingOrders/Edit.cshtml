@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-
 }
 
 <h1>Edit</h1>
@@ -15,14 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ShoppingOrderId" />
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentId" class="control-label"></label>
-                <input asp-for="PaymentId" class="form-control" />
-                <span asp-validation-for="PaymentId" class="text-danger"></span>
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ShoppingFirstName" class="control-label"></label>
@@ -35,19 +29,9 @@
                 <span asp-validation-for="Orderdate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Shipmentdate" class="control-label"></label>
-                <input asp-for="Shipmentdate" class="form-control" />
-                <span asp-validation-for="Shipmentdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Totalprice" class="control-label"></label>
                 <input asp-for="Totalprice" class="form-control" />
                 <span asp-validation-for="Totalprice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrderStatus" class="control-label"></label>
-                <select asp-for="OrderStatus" class="form-control"></select>
-                <span asp-validation-for="OrderStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CartQuantity" class="control-label"></label>

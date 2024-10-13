@@ -6,52 +6,49 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChronoMarketplace.Models
 {
-    public enum Status
-    {
-        Incompleted,
-        InProgress,
-        Completed
-    }
+
     public class ShoppingOrder
     {
 
         [Key]
-        [Display(Name = "Shopping Order ID")]
-        [StringLength(50)]
-        public int ShoppingOrderId { get; set; } //Primary Key 
+        [Required]
+        [DisplayName("Shopping Order ID")] 
+        public int ShoppingOrderId { get; set; } // Primary Key 
 
-        [StringLength(50)]
-        public int CustomerId { get; set; } //Foreign Key to Customers Table
-
-        [StringLength(50)]
-        public int PaymentId { get; set; } //Foreign Key to Payments Table
+        [DisplayName("User Name")]
+        [StringLength(50)] // Ensures UserName Property doesn't exceed 50 Characters
+        [Required]
+        [DataType(DataType.Text)]
+        public string UserName { get; set; } // Foreign Key to Customers Table
          
-        [Display(Name = "Customer")]
-        public string ShoppingFirstName { get; set; }
-       
+        [DisplayName("First Name")] // Displays the custom 'First Name' instead of property name
+        [Required]
+        public string ShoppingFirstName { get; set; } // Customer First Name Property
+
         [Required]
         [DisplayName("Order Date")]
-        [DataType(DataType.Date)]
-        public DateTime Orderdate { get; set; }
+        [DataType(DataType.Date)] // Date Validation: Client Side Validation 
+        public DateTime Orderdate { get; set; } // Order Date Property 
 
-        [Required]
-        [DisplayName("Shipment Date")]
-        [DataType(DataType.Date)]
-        
-        public DateTime Shipmentdate { get; set; }
-        [StringLength(50)]
+        public ShoppingOrder()
+        {
+            Orderdate = DateTime.Now; // Initialises new payment by setting 'PayDate' to current date and time the payment was created
+        }
 
         [Required]
         [DisplayName("Total Price")]
-        [Range(0, 100000)]
-        [DataType(DataType.Currency)]
-        public int Totalprice { get; set; }
+        [Range(1, 500000)] // Allows the input of Minimum Total Price of 1 dollar and Maximum Total Price of 500 thousand dollars and any price in between
+        [RegularExpression("^(?!0\\.00$)([1-9]\\d{0,5}(\\.\\d{1,2})?)$", ErrorMessage = "Please enter a Valid Amount")]
+        // RegEx doesn't allow $0.00, allows non-zero starting digit (1-9) with a max of 5 digits following and 1 or 2 d.p.
+        [DataType(DataType.Currency)] // Represents currency value and displays currency symbol
+        public decimal Totalprice { get; set; } // Total Price Property
 
-        [DisplayName("Order Status")]
-        public Status OrderStatus { get; set; } //Status Options: Incompleted, InProgress, Completed
 
-        [DisplayName("Items in Cart")]
-        public int CartQuantity { get; set; }
+        [Required]
+        [DisplayName("Items in Cart")] // Displays the custom 'Items in Cart' instead of property name
+        [RegularExpression("^\\d+$", ErrorMessage = "Please enter a valid Quantity Amount")]
+        // RegEx for a Positive Integer Value. As a quantity amount cannot be negative.
+        public int CartQuantity { get; set; } // Cart Quantity Property
 
 
         public ICollection<Payment> Payment { get; set; } // Reference navigation to dependent; One to Many Relationship: Multiple payments Associated w/ One Shopping Order.
